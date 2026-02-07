@@ -25,16 +25,16 @@
 ### 1. Клониране на проекта
 
 ### 2. Създаване на виртуална среда
-* **python -m venv .venv
-* **source .venv/bin/activate  # За Linux/macOS
-* **.venv\Scripts\activate     # За Windows
+* python -m venv .venv
+* source .venv/bin/activate  # За Linux/macOS
+* .venv\Scripts\activate     # За Windows
 
 ### 3. Инсталиране на зависимостите
-* **pip install -r requirements.txt
+* pip install -r requirements.txt
 
 ### 4. Стартиране
-* **uvicorn main:app --reload
+* uvicorn main:app --reload
 * Приложението ще бъде достъпно на http://127.0.0.1:8000
 
 ### 5. Изпълнение на тестове с ренериране на рапорт за покритие
-* **pytest --cov=. --cov-report=html
+* pytest --cov=. --cov-report=html
