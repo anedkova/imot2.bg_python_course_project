@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+imot2.db
+uber_app.db
+static/uploads/*
+!static/uploads/.gitkeep
