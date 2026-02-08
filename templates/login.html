@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - Imot2.bg</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Вход в Imot2.bg</h2>
+
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2">Потребителско име</label>
+                <input type="text" id="username" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2">Парола</label>
+                <input type="password" id="password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <div id="errorMessage" class="hidden text-red-500 text-sm text-center font-semibold"></div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                Влез
+            </button>
+        </form>
+
+        <p class="mt-4 text-sm text-center text-gray-600">
+            Нямате акаунт? <a href="/auth/register-page" class="text-blue-500 hover:underline">Регистрирайте се</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Спира презареждането на страницата
+
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.classList.add('hidden'); // Скриваме предишни грешки
+
+            // 1. Вземаме данните от полетата
+            const loginData = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            };
+
+            try {
+                // 2. Изпращаме JSON заявка към бекенда
+                const response = await fetch('/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // 3. Ако всичко е наред, пренасочваме към началната страница
+                    window.location.href = "/";
+                } else {
+                    // 4. Ако има грешка (401 или 400), я показваме
+                    errorDiv.innerText = result.detail || "Неуспешен вход.";
+                    errorDiv.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error("Грешка при връзката:", error);
+                errorDiv.innerText = "Няма връзка със сървъра.";
+                errorDiv.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

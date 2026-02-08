@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Начало - Imot2.bg</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+    <nav class="bg-white shadow-lg p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-3xl font-extrabold text-blue-600 tracking-tight">imot2.bg</a>
+
+            <div class="flex items-center space-x-6">
+                {% if user %}
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-700 font-medium"><span class="text-blue-600 font-bold">{{ user.username }}</span></span>
+                        <a href="/profile" class="text-gray-600 hover:text-blue-600 font-medium transition">Моят профил</a>
+                        <a href="/auth/logout" class="text-red-500 hover:text-red-700 text-sm font-bold border-l pl-4 border-gray-200">Изход</a>
+                    </div>
+                {% else %}
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-400 italic text-sm">Гост</span>
+                        <a href="/login" class="text-gray-600 hover:text-blue-600 font-medium transition">Вход</a>
+                        <a href="/register" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 shadow-md transition">Регистрация</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-20 px-4 text-center flex-grow">
+        <div class="max-w-3xl mx-auto mb-16">
+            <h2 class="text-6xl font-black text-gray-900 mb-6 leading-tight">Намери своя мечтан дом</h2>
+            <p class="text-xl text-gray-500">Най-бързият и сигурен начин да купиш или наемеш имот в България.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+            <a href="/properties-page" class="group bg-white p-8 rounded-2xl shadow-sm border-b-8 border-blue-500 hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
+                <div class="text-5xl mb-6 group-hover:scale-110 transition duration-300">🔍</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-800">Търси имоти</h3>
+                <p class="text-gray-500 leading-relaxed">Разгледай най-новите предложения за продажба и наем на пазара.</p>
+            </a>
+
+            <a href="/add-property" class="group bg-white p-8 rounded-2xl shadow-sm border-b-8 border-green-500 hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
+                <div class="text-5xl mb-6 group-hover:scale-110 transition duration-300">➕</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-800">Добави обява</h3>
+                <p class="text-gray-500 leading-relaxed">Публикувай своя имот и намери наемател или купувач още днес.</p>
+            </a>
+
+            <a href="/properties/manage" class="group bg-white p-8 rounded-2xl shadow-sm border-b-8 border-yellow-500 hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
+                <div class="text-5xl mb-6 group-hover:scale-110 transition duration-300">📝</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-800">Управлявай обяви</h3>
+                <p class="text-gray-500 leading-relaxed">Следи статуса на твоите имоти, променяй цени или редактирай описанието.</p>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="mt-20 py-10 bg-gray-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="text-2xl font-bold text-blue-400 mb-4">imot2.bg</div>
+            <p class="text-gray-400 text-sm">&copy; 2026 Imot2.bg - Всички права запазени. Разработено за курсов проект по Python.</p>
+        </div>
+    </footer>
+</body>
+</html>
