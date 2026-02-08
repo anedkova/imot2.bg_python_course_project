@@ -25,11 +25,12 @@
 ### 1. Клониране на проекта
 
 ### 2. Създаване на виртуална среда
-* python -m venv .venv
+* py -m venv .venv
 * source .venv/bin/activate  # За Linux/macOS
 * .venv\Scripts\activate     # За Windows
 
 ### 3. Инсталиране на зависимостите
+* cd imot2.bg
 * pip install -r requirements.txt
 
 ### 4. Стартиране
