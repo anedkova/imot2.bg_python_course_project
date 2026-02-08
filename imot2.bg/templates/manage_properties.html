@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление на обяви - Imot2.bg</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow p-4 mb-8">
+        <div class="container mx-auto flex justify-between">
+            <a href="/" class="text-xl font-bold text-blue-600">imot2.bg</a>
+            <span class="text-gray-600">Контролен панел на брокера</span>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-6">Моите обяви</h2>
+
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-gray-50 border-b">
+                    <tr>
+                        <th class="p-4 font-semibold text-gray-700">Имот</th>
+                        <th class="p-4 font-semibold text-gray-700">Цена</th>
+                        <th class="p-4 font-semibold text-gray-700">Локация</th>
+                        <th class="p-4 font-semibold text-gray-700">Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prop in properties %}
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="p-4">
+                            <div class="font-bold">{{ prop.title }}</div>
+                            <div class="text-xs text-gray-500">{{ "Продажба" if prop.property_type == "sale" else "Под наем" }}</div>
+                        </td>
+                        <td class="p-4 text-blue-600 font-semibold">{{ prop.price }} €</td>
+                        <td class="p-4 text-gray-600">{{ prop.location }}</td>
+                        <td class="p-4 space-x-2">
+                            <a href="/properties/edit/{{ prop.id }}" class="text-yellow-600 hover:underline">Редактирай</a>
+                            <form action="/properties/delete-web/{{ prop.id }}" method="post" class="inline">
+                                <button type="submit" class="text-red-600 hover:underline" onclick="return confirm('Сигурни ли сте?')">Изтрий</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not properties %}
+        <div class="text-center py-10 text-gray-500">Все още нямате качени обяви.</div>
+        {% endif %}
+    </div>
+</body>
+</html>
